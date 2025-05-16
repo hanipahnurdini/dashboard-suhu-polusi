@@ -30,8 +30,12 @@ Dibuat menggunakan Python, Streamlit, dan berbagai library visualisasi.
    ```bash
    git clone https://github.com/hanipahnurdini/dashboard-suhu-polusi.git
    cd dashboard-suhu-polusi
-   
-pip install -r requirements.txt
 
-## Run Streamlit Up
-streamlit run dashboard.py
+  ## Install Dependensi & Run Streamlit UP
+  ```bash
+   pip install -r requirements.txt
+
+   streamlit run dashboard.py
+
+
+

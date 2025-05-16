@@ -32,4 +32,6 @@ Dibuat menggunakan Python, Streamlit, dan berbagai library visualisasi.
    cd dashboard-suhu-polusi
    
 pip install -r requirements.txt
+
+#Run Streamlit Up
 streamlit run dashboard.py

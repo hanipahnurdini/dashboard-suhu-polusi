@@ -33,5 +33,5 @@ Dibuat menggunakan Python, Streamlit, dan berbagai library visualisasi.
    
 pip install -r requirements.txt
 
-#Run Streamlit Up
+## Run Streamlit Up
 streamlit run dashboard.py

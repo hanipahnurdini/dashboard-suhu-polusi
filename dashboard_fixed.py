@@ -14,6 +14,9 @@ df_air_quality = pd.read_csv(data_path)
 df_air_quality["year"] = pd.to_datetime(df_air_quality["year"], format='%Y').dt.year  # Convert to int
 df_air_quality.fillna(df_air_quality.select_dtypes(include=['number']).mean(numeric_only=True), inplace=True)
 
+av_path = os.path.join(BASE_DIR, "av_suhu_kota_pertahun.csv")
+av_suhu_kota_pertahun = pd.read_csv(av_path)
+
 st.set_page_config(
     page_title="Dashboard Suhu & Polutan Kota",
     layout="wide",
@@ -54,9 +57,15 @@ if not city_stats.empty:
 
  # ---- PAGE: Data ----
 if page == "📊 Data":
-    st.header("📊 Data Suhu & Polutan per Kota")
-    city_data = df_filtered.groupby("City")[pollutants + ["TEMP"]].mean().reset_index()
+    st.subheader("📊 Data Suhu dan Polusi Udara Tiap Kota")
+    all_pollutants = ["TEMP", "PM2.5", "PM10", "SO2", "NO2", "CO", "O3"]
+    city_data = df_filtered.groupby("City")[all_pollutants].mean().reset_index()
     st.dataframe(city_data.style.format("{:.2f}"))
+
+    st.markdown("---")
+    st.subheader("📅 Rata-rata Suhu per Kota per Tahun")
+    av_filtered = av_suhu_kota_pertahun[av_suhu_kota_pertahun["year"] == selected_year]
+    st.dataframe(av_filtered.style.format({"TEMP": "{:.2f}"}))
 
 # ---- PAGE: Visualisasi ----
 elif page == "📈 Visualisasi":
